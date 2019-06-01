@@ -1,10 +1,10 @@
 Run npm init. When that's finished, install and save these npm packages:
 
 
-express
-express-handlebars
-mongoose
-cheerio
-axios
-mongojs
-body-parser
+npm install express
+npm install express-handlebars
+npm install mongoose
+npm install cheerio
+npm install axios
+npm install mongojs
+npm install body-parser

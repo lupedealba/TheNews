@@ -14,8 +14,11 @@ app.use(express.json());
 // db
 var db = mongojs("Lupe_database", ['Lupe_collection']);
 //for the section that says test, idk what db is supposed to go there.
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/test'
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 mongoose.connect(MONGODB_URI);
+
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -25,7 +28,7 @@ app.get("/html/get", function(req, res) {
     // 1. MongoCall
     // 2. Return HTML
     db.Lupe_collection.find(function (err, docs) {
-        res.render("index", {
+        res.render("main", {
             mongoData: docs
         });
         console.log(docs);
