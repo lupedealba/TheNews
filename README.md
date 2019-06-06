@@ -16,8 +16,7 @@ https://lupedealba.github.io/TheNews/
 
 
 **Video:**
-
-https://drive.google.com/file/d/16cSwH9KiUttxLR_x7OjWLEus5tpzX75h/view - automatic!
+Watch how it works
 [Video](https://drive.google.com/file/d/16cSwH9KiUttxLR_x7OjWLEus5tpzX75h/view)
 
 
