@@ -16,3 +16,12 @@ npm uninstall axios --save
 npm uninstall cheerio --save
 
 npm install cheerio --save
+
+Heroku link:
+https://damp-plateau-67682.herokuapp.com/
+
+Github link:
+https://github.com/lupedealba/TheNews
+
+deployed Github link:
+https://lupedealba.github.io/TheNews/
