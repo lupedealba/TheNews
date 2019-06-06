@@ -1,41 +1,49 @@
-var axios = require("axios");
-var cheerio = require("cheerio");
-var bodyParser = require("body-parser");
+// var axios = require("axios");
+// var cheerio = require("cheerio");
 var express = require("express");
-var exphbs = require("express-handlebars");
-var mongojs = require("mongojs");
 var mongoose = require("mongoose");
+var expressHandlebars = require("express-handlebars");
+var bodyParser = require("body-parser");
 
 var PORT = process.env.PORT || 3000;
 
-var app = express();var db = mongojs("Lupe_database", ['Lupe_collection']);
-app.use(express.json());
+// var mongojs = require("mongojs");
 
-// db
-var db = mongojs("Lupe_database", ['Lupe_collection']);
-//for the section that says test, idk what db is supposed to go there.
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var app = express();
 
-mongoose.connect(MONGODB_URI);
+var router = express.Router();
 
+require("./config/routes")(router);
 
+app.use(express.static(__dirname + "/public"));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", expressHandlebars({
+    defaultLayout: "main"
+}));
 app.set("view engine", "handlebars");
 
-app.get("/html/get", function(req, res) {
-    // 1. MongoCall
-    // 2. Return HTML
-    db.Lupe_collection.find(function (err, docs) {
-        res.render("main", {
-            mongoData: docs
-        });
-        console.log(docs);
-    });
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+app.use(router);
+
+var db = process.env.MONGODB_URI || "mongodb://localhost/Lupe_database";
+// mongoose.connect(MONGODB_URI);
+mongoose.connect(db, {
+    useNewUrlParser: true
+    },
+function(error) {
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("mongoose connection is successful");
+    }
 });
+
 
 app.listen(PORT, function() {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
-  })
+});

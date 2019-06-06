@@ -8,3 +8,11 @@ npm install cheerio
 npm install axios
 npm install mongojs
 npm install body-parser
+npm install request
+
+npm install express --save
+
+npm uninstall axios --save
+npm uninstall cheerio --save
+
+npm install cheerio --save
